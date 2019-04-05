@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>操作首页</title>
+	<link rel="stylesheet" href="../../jQueryUI/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../jqGrid/css/ui.jqgrid.css" />
+	<script src="../../jqGrid/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+	<script src="../../jqGrid/js/i18n/grid.locale-cn.js" type="text/javascript"></script>
+	<script src="../../jqGrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<table id="grid"></table>
+	<div id="pager2"></div>
+	<script type="text/javascript">
+		$(function () {
+			//页面加载完成之后执行
+			pageInit();
+		});
+
+		function pageInit() {
+			//创建jqGrid组件
+			jQuery("#grid").jqGrid({
+				url: '../../rest/fuxiaoyi/queryVehicleImage?uuid=4552f027-bf4f-4bf7-b250-b0a5a9481d88', //组件创建完成之后请求数据的url
+				// url: '../../json/JSONData', //组件创建完成之后请求数据的url
+				datatype: "json", //请求数据返回的类型。可选json,xml,txt
+				jsonReader: {
+					root: "content",
+					page: "currpage",
+					total: "totalpages",
+					records: "totalrecords",
+					repeatitems: false,
+					id: "0",
+				},
+				colNames: ['imagePath', 'passTime', 'picUrl', 'plateNo', 'updateTime', 'uuid', 'vehPicUrl_1', 'vehPicUrl_2'], //jqGrid的列显示名字
+				colModel: [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
+					{
+						name: 'imagePath',
+						index: 'imagePath',
+						width: 200
+					},
+					{
+						name: 'passTime',
+						index: 'passTime',
+						width: 150
+					},
+					{
+						name: 'picUrl',
+						index: 'picUrl',
+						width: 150
+					},
+					{
+						name: 'plateNo',
+						index: 'plateNo',
+						width: 100,
+						align: "right"
+					},
+					{
+						name: 'updateTime',
+						index: 'updateTime',
+						width: 150,
+						align: "right"
+					},
+					{
+						name: 'uuid',
+						index: 'uuid',
+						width: 200,
+						align: "right"
+					},
+					{
+						name: 'vehPicUrl_1',
+						index: 'vehPicUrl_1',
+						width: 200,
+						sortable: false
+					},
+					{
+						name: 'vehPicUrl_2',
+						index: 'vehPicUrl_2',
+						width: 200,
+						sortable: false
+					}
+				],
+				rowNum: 10, //一页显示多少条
+				rowList: [10, 20, 30], //可供用户选择一页显示多少条
+				pager: '#pager2', //表格页脚的占位符(一般是div)的id
+				sortname: 'uuid', //初始化的时候排序的字段
+				sortorder: "desc", //排序方式,可选desc,asc
+				mtype: "get", //向后台请求数据的ajax的类型。可选post,get
+				viewrecords: true,
+				caption: "JSON Example", //表格的标题名字
+				gridComplete: function() {
+					console.log("gridComplete");
+				},
+			});
+			/*创建jqGrid的操作按钮容器*/
+			/*可以控制界面上增删改查的按钮是否显示*/
+			// jQuery("#grid").jqGrid('navGrid', '#pager2', {
+			// 	edit: false,
+			// 	add: false,
+			// 	del: false
+			// });
+		}
+	</script>
+</body>
+
+</html>
