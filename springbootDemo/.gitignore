@@ -1,7 +1,0 @@
-###忽略jar包###
-*.jar
-*.war
-*.rar
-*.zip
-###忽略target目录###
-/springbootDemo/target
