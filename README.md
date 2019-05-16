@@ -9,4 +9,5 @@ tomcat相关配置：
 
 1、springbot+mybatis
 2、使用tomcat部署war包的形式，部署服务
-3、rest controller接口使用swagger调试
+3、rest controller接口使用swagger调试 
+http://${ip}:{port}/swagger-ui.html
